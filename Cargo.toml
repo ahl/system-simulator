@@ -1,0 +1,12 @@
+[package]
+name = "system-simulator"
+version = "0.1.0"
+authors = ["Adam H. Leventhal <ahl@oxide.computer>"]
+edition = "2018"
+
+[dependencies]
+usdt = "0.1.12"
+rand_distr = "0.4.0"
+rand = "0.8.3"
+tokio = { version = "1.6.1", features = ["full"] }
+futures = "0.3.15"
