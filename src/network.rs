@@ -13,6 +13,7 @@ impl Network {
         }
     }
 
+    /// Simulate network delay.
     pub async fn traverse(&self) {
         let d = self.rng.sample(&mut rand::thread_rng()) as u64;
         let delta = Duration::from_micros(500 + d);

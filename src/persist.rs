@@ -21,6 +21,8 @@ impl Persist {
         isim_persist__start!(|| id);
         let d = self.rng.sample(&mut rand::thread_rng()) as u64;
         let delta = Duration::from_micros(50_000 + d);
+        // Asynchronously delay for the time required to complete a transaction
+        // and then call the completion handler.
         tokio::task::spawn(async move {
             tokio::time::sleep(delta).await;
             isim_persist__done!(|| id);

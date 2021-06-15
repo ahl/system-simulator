@@ -17,12 +17,18 @@ impl<'a> Client<'a> {
     pub async fn go(&self) {
         // Forever...
         loop {
+            // Generate a random id simply to correlate start and done probes.
             let id = rand::thread_rng().gen();
             isim_request__start!(|| id);
+            // Send the request over the network.
             self.network.traverse().await;
+            // Make a request to the server.
             self.server.request(id).await;
+            // Return the response over the network.
             self.network.traverse().await;
             isim_request__done!(|| id);
+
+            // Pause for a second.
             sleep(Duration::from_secs(1)).await;
         }
     }
